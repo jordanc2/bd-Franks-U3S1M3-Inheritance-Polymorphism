@@ -3,7 +3,7 @@ package com.frank;
 import java.util.ArrayList;
 
 public class UsePlayingCards {
-// This is our application program which will instantiate object and use thier methods to manipulate them
+// This is our application program which will instantiate object and use their methods to manipulate them
 // We know this is the application program because it has the main() method
 	public static void main(String[] args) {
 
@@ -53,7 +53,7 @@ public class UsePlayingCards {
 
 		System.out.println("\n--------- Polymorphism examples start here ---------------------------");
 
-		PlayingCard aCard; // Define an object of the super class
+		PlayingCard aCard; // Define a reference to an object of the super class
 
 		aCard = aUSACard;  // Assign a sub class object to the super class object
 		aCard.showCard();  // Use the super class to invoke a method - run the showCard() method of the object IN aCard
@@ -75,17 +75,22 @@ ArrayList<PlayingCard> myCards = new ArrayList();  // Defined an ArrayList of su
 
 // Display all the objects in my ArrayList - Polymorphism will cause the correct showCard() for the element to be run
         for(PlayingCard theCard : myCards) { // Define a super class object as element in the for each
-        	theCard.showCard();              // Use the element in the for each to invoke the methos
+        	theCard.showCard();              // Use the element in the for each to invoke the methods
 		}
 
 		System.out.println("\n ---- Using a function to display a card ------\n");
         displayCard(aSwissCard3);      // call the function to display our card
         displayCard(anItalianCard2);   // call the function to display our card
 
+		System.out.println("\n--------- Call static pickACard method examples start here ---------------------------");
+		displayCard(AmericanPlayingCard.pickACard()); // use the class name to call a static method in the class
+		displayCard(aUSACard.pickACard()); // use an object of the class to call a static method in the class
+		displayCard(aUSACard2.pickACard()); // use an object of the class to call a static method in the class
+
 	}  // End of main()
 	// This must be static because what calls it is static
 	static void displayCard(PlayingCard cardyMcCardCard) {  // a function receives a super class object
-		cardyMcCardCard.showCard();  // use the super class object to run a method - Polymorphish will run the correct method
+		cardyMcCardCard.showCard();  // use the super class object to run a method - Polymorphism will run the correct method
 	}
 
 

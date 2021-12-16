@@ -2,10 +2,11 @@ package com.frank;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
 
 public class AmericanPlayingCard extends PlayingCard{
-	// static means there only shared by all
+	// static means there only one shared by all
 	// final means cannot be changed once it has been assigned a value
 	// static final means only one occurrence, shared by all, that can't be changed
 	private static final int    DEFAULTCARDVALUE = 0;
@@ -27,7 +28,8 @@ public class AmericanPlayingCard extends PlayingCard{
 	static {  // Note: no function/method definitions - anonymous function
 		initializeMaps();  // call the function to initialize the suitMap and valueMap
 	}
-	
+
+	// subclass constructor must call superclass constructor first before doing anything else
 	public AmericanPlayingCard() 
 	{
 		super(DEFAULTCARDVALUE, DEFAULTSUIT, DEFAULTCOLOR);
@@ -107,6 +109,22 @@ public class AmericanPlayingCard extends PlayingCard{
 
 	public void showCard() {
 		System.out.println(this.toString());
+	}
+
+	// generate a random PlayingCard
+	// because this method is static we can use the class name to invoke
+	public static PlayingCard pickACard() {
+		Random aRandomObject = new Random();
+
+		// Convert the suitMap to an array so we can pick a suit with a random index
+		String[] suits =  suitMap.keySet().toArray(new String[suitMap.size()]);
+
+		int newCardValue = (aRandomObject.nextInt(13 - 1 + 1) + 1);
+
+		// Pick a suit from the array created above using a random index
+		//                        RandomClassObj.nextInt( (max-min)+1) - min
+		String newCardSuit = suits[aRandomObject.nextInt(((suits.length-1)+1))]; //  (since smallest index is 0, no need to +1 and - min
+		return new AmericanPlayingCard(newCardValue, newCardSuit );
 	}
 
 }

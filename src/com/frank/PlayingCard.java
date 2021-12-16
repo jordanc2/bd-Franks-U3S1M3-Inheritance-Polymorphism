@@ -1,12 +1,17 @@
 package com.frank;
 
-public class PlayingCard {
+// abstract on a class means the class cannot be instantiated and is meant to ALWAYS be a superclass
+// They CAN be used to hold a reference to a subclass of its type (Polymorphism)
+// CANNOT create an object of an abstract class
+
+abstract public class PlayingCard {
 	
 	private int value;    
 	private String color;    
 	private String suit;     
 	
-	
+	// Note: There is no default constructor defined, so we cannot instantiate a generic PlayingCard
+
 	public PlayingCard(int value, String suit, String color) {
 		this.value = value;
 		this.suit  = suit;
@@ -85,6 +90,13 @@ public class PlayingCard {
 	}
 
 // super class is required to have any method where Polymorphism might be used - even if it doesn't need it
-public void showCard() {} // required for Polymorphism to work - even though it does nothing
+//
+// abstract on a method indicates this class does not know what the behavior should be for the method and requires any
+// subclass to implement the behavior of the method
+//
+// "I don't know what this does, but I know you have to have one if you inherit me"
+
+abstract public void showCard(); // required for Polymorphism to work - even though it does nothing
+
 
 } // End of PlayingCard class
